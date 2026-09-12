@@ -181,7 +181,7 @@ pre code { background:none; padding:0; font-size:9.5pt; }
 <ol>
 <li>검색 결과가 아예 없음</li>
 <li>1위 사례의 <strong>의미 유사도(벡터 점수)가 0.83 미만</strong> → 뜻이 별로 안 비슷함</li>
-<li>1위 사례의 <strong>키워드 매칭이 바닥(0.05 미만)</strong> → 문장 형식만 비슷하고 실제 단어가 하나도 안 맞음</li>
+<li>1위 사례의 <strong>키워드 매칭이 바닥(0.05 미만)</strong>이거나, <strong>변별력 있는 질문 단어가 1위 사례에 하나도 없음</strong> → 문장 형식만 비슷하고 실제 단어가 안 맞음. "절차"·"신청"처럼 거의 모든 사례에 나오는 단어는 세지 않음 (예: "사원증 재발급 절차를 알려줘"는 "절차"만 겹치므로 약한 매칭)</li>
 </ol>
 <p><code>weak_match = true</code>이면 → 사례로 절차를 지어내지 않고, <strong>"맞는 사례가 없습니다"라고 밝힌 뒤 담당자 연락처를 안내</strong></p>
 <blockquote>
@@ -198,7 +198,7 @@ pre code { background:none; padding:0; font-size:9.5pt; }
 <p>판정 순서 (<code>search.py</code>의 <code>route_contact()</code>)</p>
 <table><thead><tr><th>단계</th><th>조건</th><th>결과</th></tr></thead><tbody>
 <tr><td>A. 사례 DB 밖 영역</td><td>성능·튜닝, 인증·세션 정책 팀의 키워드가 질문에 일치</td><td>검색 결과가 그럴듯해 보여도 <code>weak_match = true</code>로 승격하고 그 팀 안내</td></tr>
-<tr><td>B. 약한 매칭</td><td>6장의 세 조건 중 하나</td><td>키워드 일치 팀 → 담당 업무 설명과의 임베딩 유사도 0.80 이상인 팀 → 기본 창구(IT 서비스데스크, 내선 1234) 순</td></tr>
+<tr><td>B. 약한 매칭</td><td>6장의 세 조건 중 하나</td><td>키워드 일치 팀 → 담당 업무 설명과의 임베딩 유사도가 0.82 이상이고 2위 팀보다 뚜렷이 높은 팀 → 기본 창구(IT 서비스데스크, 내선 1234) 순</td></tr>
 <tr><td>C. 정상 매칭</td><td>그 외</td><td>사례로 절차 안내 + 1위 사례 영역의 담당 팀을 "추가 문의처"로 첨부</td></tr>
 </tbody></table>
 <blockquote>
