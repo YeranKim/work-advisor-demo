@@ -218,9 +218,7 @@ pre code { background:none; padding:0; font-size:9.5pt; }
 │   └── manifest.json               ← 색인 설정 기록 (모델명, 차원 768 등)
 │
 ├── src/workcase_agent/
-│   ├── search.py                   ← 핵심 두뇌: 하이브리드 검색 + weak_match 판정 + 담당자 라우팅
-│   ├── llm.py                      ← 답변 문장용 LLM 어댑터 (Claude / GPT / Gemini / Groq 교체 가능)
-│   └── answer.py                   ← 답변 프롬프트, LLM 없을 때의 보고서
+│   └── search.py                   ← 핵심 두뇌: 하이브리드 검색 + weak_match 판정 + 담당자 라우팅
 │
 ├── scripts/
 │   ├── ask.py                      ← 검색 실행 입구 (질문 → 결과)
@@ -230,7 +228,6 @@ pre code { background:none; padding:0; font-size:9.5pt; }
 │   ├── make_report.py              ← 결과를 보고서로 만들기
 │   └── build_web_demo.py           ← 웹 데모(docs/index.html) 빌드
 │
-├── app.py                          ← Streamlit 웹 앱 (파이썬 코드 그대로 로컬에서 실행)
 ├── web/template.html               ← 웹 데모 템플릿 (검색·라우팅을 JS로 옮긴 브라우저 버전)
 │
 ├── skill/
